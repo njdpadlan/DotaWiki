@@ -1,62 +1,11 @@
-/*
-Fetch Fundamentals
-In this example we're going to generate random pictures of dogs.
-1. Select the random dog button and add a click event
-    listener on it.
-2. Create the function get random dog with the fetch api.
-    - documentation for the dog api here https://dog.ceo/dog-api/
-    - explore and display what the promise returns.
-3. Create a function that will select the image 
-4. Call the get random dog function in your event listener,
-    and call it when the page loads.
-*/
-
-// let randomDogButton = document.querySelector("#new-dog-button");
-
-// randomDogButton.addEventListener("click", () => {
-//     getRandomDog();
-// });
-
-
-// const getRandomDog = () => {
-//     //Fetch the dog url. GET is the default
-//     let dogURL = "https://dog.ceo/api/breeds/image/random";
-//     fetch(dogURL)
-//     .then((response) => {
-//         return response.json();
-        
-//     })
-//     .then((dogObject) => {
-//         console.log(dogObject);
-//         displayDogImage(dogObject.message);
-//     });
-//     //then get the json body from the response
-//     //then display the dog image
-// };
-
-// const displayDogImage = (imageURL) => {
-//     //get the dog image
-//     let dogImageElement = document.querySelector(".dog-image");
-//     //update the src attribute
-//     dogImageElement.setAttribute("src", imageURL);
-// };
-
-// getRandomDog();
+import { getDotaHero } from "./api.js";
 
 let herolist = [];
 
-const getDotaHero = () => {
-    let url = "https://api.opendota.com/api/heroes/";
-
-    fetch(url)
-    .then((response) => {
-        return response.json();
-    }).then(dotahero => {   
-        //herolist = dotahero;
-        sortHeroListAlphabetically(dotahero);
-        pickAHero(dotahero)
-    })
-}
+getDotaHero().then(dotaheroesArray => {
+    sortHeroListAlphabetically(dotaheroesArray);
+    renderHeroList(dotaheroesArray)
+})
 
 //this will sort heroes alphabetically
 const sortHeroListAlphabetically = (heroesArray) => {
@@ -67,7 +16,7 @@ const sortHeroListAlphabetically = (heroesArray) => {
     })
 }
 
-const pickAHero = (testherodetails) => {
+const renderHeroList = (testherodetails) => {
 
     testherodetails.forEach(herodetails => {
     //removes the "npc_dota_hero_" and gets the hero name
@@ -87,8 +36,6 @@ const pickAHero = (testherodetails) => {
     })
 }
 
-getDotaHero();
 
-
-//NO IMAGE FOR DAWN BREAKER ON THIS URL
+//NO IMAGE FOR DAWN BREAKER FOR THIS URL
 //https://cdn.cloudflare.steamstatic.com/apps/dota2/images/heroes/${heroName}_full.png;
