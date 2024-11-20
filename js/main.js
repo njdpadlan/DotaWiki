@@ -69,12 +69,11 @@ const sortHeroListAlphabetically = (heroesArray) => {
 
 const pickAHero = (testherodetails) => {
 
-
     testherodetails.forEach(herodetails => {
     //removes the "npc_dota_hero_" and gets the hero name
     let heroName = herodetails.name.replace("npc_dota_hero_", "");
     //URL from Cloudflare for hosting Dota 2 assets
-    let imgURL = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/heroes/${heroName}_full.png`;
+    let imgURL = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${heroName}.png`;
     let herolistElement = document.querySelector(".hero-list")
     let herocards = `<div class="col">
         <div class="card shadow-sm">
@@ -89,3 +88,7 @@ const pickAHero = (testherodetails) => {
 }
 
 getDotaHero();
+
+
+//NO IMAGE FOR DAWN BREAKER ON THIS URL
+//https://cdn.cloudflare.steamstatic.com/apps/dota2/images/heroes/${heroName}_full.png;
