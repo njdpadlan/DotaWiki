@@ -21,4 +21,18 @@
   h1, h5 {
     text-align: center;
   }
-  
+
+  .hero-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 1rem;
+  }
+
+  .card {
+    margin-bottom: 2rem;
+  }
+
+  .navbar {
+    justify-content: center;
+  }
