@@ -16,6 +16,7 @@ getDotaHero().then((dotaheroesArray) => {
   sortHeroListAlphabetically(dotaheroesArray);
   renderHeroList(dotaheroesArray);
   heroList = dotaheroesArray;
+  
 });
 
 //Sort heroes alphabetically
@@ -28,21 +29,21 @@ const sortHeroListAlphabetically = (heroesArray) => {
 };
 
 //renders all the heroes
-const renderHeroList = (dotaheroes) => {
+const renderHeroList = (dotaHeroes) => {
 
   herolistElement.innerHTML = "";
 
-  dotaheroes.forEach((herodetails) => {
+  dotaHeroes.forEach(heroDetails => {
     //removes the "npc_dota_hero_" and gets the hero name
-    let heroName = herodetails.name.replace("npc_dota_hero_", "");
+    let heroName = heroDetails.name.replace("npc_dota_hero_", "");
 
     //URL from Cloudflare for hosting Dota 2 assets
     let imgURL = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${heroName}.png`;
 
-    let heroCards = `<div class="card">
+    let heroCards = `<div class="card" hero-name="${heroDetails.localized_name}">
         <img class="card-img-top" src="${imgURL}">
         <div class="card-body">
-          <h5 class="card-title">${herodetails.localized_name}</h5>
+          <h5 class="card-title">${heroDetails.localized_name}</h5>
         </div>
       </div>`;
     herolistElement.innerHTML += heroCards;
@@ -75,33 +76,29 @@ heroesFormElement.addEventListener("submit", (event) => {
 
 //sort heroes by STR
 strFilter.addEventListener("click", () => {
-  let strValue = strFilter.value
   filteredHeroList = heroList
-  filteredHeroList = sortByATTR(strValue, filteredHeroList)
+  filteredHeroList = sortByATTR("str", filteredHeroList)
   renderHeroList(filteredHeroList)
 })
 
 //sort heroes by AGI
 agiFilter.addEventListener("click", () => {
-  let agiValue = agiFilter.value
   filteredHeroList = heroList
-  filteredHeroList = sortByATTR(agiValue, filteredHeroList)
+  filteredHeroList = sortByATTR("agi", filteredHeroList)
   renderHeroList(filteredHeroList)
 })
 
 //sort heroes by INT
 intFilter.addEventListener("click", () => {
-  let intValue = intFilter.value
   filteredHeroList = heroList
-  filteredHeroList = sortByATTR(intValue, filteredHeroList)
+  filteredHeroList = sortByATTR("int", filteredHeroList)
   renderHeroList(filteredHeroList)
 })
 
 //sort heroes by UNIVERSAL
 univFilter.addEventListener("click", () => {
-  let univValue = univFilter.value
   filteredHeroList = heroList
-  filteredHeroList = sortByATTR(univValue, filteredHeroList)
+  filteredHeroList = sortByATTR("all", filteredHeroList)
   renderHeroList(filteredHeroList)
 })
 
@@ -114,5 +111,59 @@ const sortByATTR = (heroAttr, heroList) => {
 }
 
 
+//Function to create and show a modal
+const showHeroModal = (heroName, heroAttr, imgURL) => {
+  let heroModalElement = document.querySelector(".hero-modal");
+  //resets the hero name in the modal
+  heroModalElement.innerHTML = "";
+  
+  let modalHTML = `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">${heroName}</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Primary Attribute: ${heroAttr} </p>
+      </div>
+    </div>
+  </div>
+</div>`
+
+
+heroModalElement.innerHTML += modalHTML;
+// Show the modal using Bootstrap's method
+  $('#exampleModalCenter').modal('show');
+};
+
+//Example: Trigger the modal when clicking a hero card
+herolistElement.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  //closest hero card and gets the hero name
+  let heroNameModal = event.target.closest(".card").getAttribute("hero-name");
+  
+ let heroAttr = heroStats(heroNameModal, heroList)
+  console.log(heroAttr)
+  showHeroModal(heroNameModal,heroAttr)
+  
+
+});
+
+const heroStats = (heroName, heroArray) => {
+  let hero = heroArray.find(hero => {
+    return hero.localized_name === heroName
+  })
+
+  if (hero) {
+    return hero.primary_attr
+  }
+
+}
+
 //NO IMAGE FOR DAWN BREAKER FOR THIS URL
 //https://cdn.cloudflare.steamstatic.com/apps/dota2/images/heroes/${heroName}_full.png;
+

@@ -31,8 +31,10 @@
 
   .card {
     margin-bottom: 2rem;
+    cursor: pointer;
   }
 
   .navbar {
     justify-content: center;
   }
+
