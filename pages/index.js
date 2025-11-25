@@ -17,7 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     getHeroes().then((data) => {
-      console.log(data);
+      // console.log(data);
       setHeroesData(data);
     });
   }, []);
