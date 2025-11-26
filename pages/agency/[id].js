@@ -53,10 +53,25 @@ export default function Agency() {
           <Grid item xs="2">
             <img src={heroImg} alt="qwe" style={{ width: `200px` }} />
           </Grid>
+        </Grid>
+          <Typography variant="h5">
+            {`Attribute: ${heroData.primary_attr}`}
+          </Typography>
+          <Typography variant="h5">
+            {`Attack Type: ${heroData.attack_type}`}
+          </Typography>
+          <Typography variant="h5">
+            {`Movement Speed: ${heroData.move_speed}`}
+          </Typography>
+          <Typography variant="h5">
+            {`Legs: ${heroData.legs}`}
+          </Typography>
+          <Typography variant="h5">
+            {'Lore:'}
+          </Typography>
           <Typography variant="h5">
             {heroLore}
-            </Typography>
-        </Grid>
+          </Typography>
       </Container>
     </>
   );

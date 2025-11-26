@@ -3,7 +3,7 @@ import Head from "next/head";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-
+import { Grid } from "@mui/material";
 import AgencyCard from "@components/AgencyCard";
 import NavBar from "@components/NavBar";
 
@@ -31,18 +31,11 @@ export default function Home() {
       </Head>
 
       <NavBar />
-
-      <Container sx={{ paddingTop: 2 }} component="main" maxWidth="xs">
+      <Box sx={{backgroundColor: "#0d1117"}}>
+      <Container sx={{ paddingTop: 2 }} component="main" maxWidth="lg">
         {/* <Typography variant="h3">Dota Heroes</Typography> */}
 
-        <Box
-          sx={{
-            marginTop: 2,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
+        <Grid container spacing={5} justifyContent="center">
           {heroesData.map((hero) => {
             // Clean hero name for the image URL
             const heroName = hero.name.replace("npc_dota_hero_", "");
@@ -51,16 +44,19 @@ export default function Home() {
             const imgURL = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${heroName}.png`;
 
             return (
+              <Grid item key={hero.id}>
               <AgencyCard
                 key={hero.id}
                 id={hero.id}
                 localized_name={hero.localized_name}
                 imageUrl={imgURL}
               />
+              </Grid>
             );
           })}
-        </Box>
+        </Grid>
       </Container>
+      </Box>
     </div>
   );
 }

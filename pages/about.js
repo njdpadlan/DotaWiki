@@ -24,8 +24,7 @@ export default function Home() {
             About us
           </Typography>
           <Typography variant="p">
-            We really like space so we created an application that's about space
-            agencies and their spacecrafts.
+            I LOVE DOTAAAAA!
           </Typography>
         </Container>
 

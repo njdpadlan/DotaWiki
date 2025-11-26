@@ -20,7 +20,7 @@ export default function AgencyCard(props) {
     router.push(`/agency/${props.id}`);
   };
   return (
-    <Card sx={{ marginTop: "8px", maxWidth: 345 }}>
+    <Card sx={{ marginTop: "8px", maxWidth: 345, backgroundColor: "#dcdcdc"}}>
       <CardActionArea onClick={naviateToAgencyPage}>
         {props.imageUrl && (
           <CardMedia
@@ -31,7 +31,7 @@ export default function AgencyCard(props) {
           />
         )}
         <CardContent>
-          <Typography variant="h5" component="div">
+          <Typography variant="h5" component="div" align="center">
             {props.localized_name}
           </Typography>
         </CardContent>
