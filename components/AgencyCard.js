@@ -16,12 +16,12 @@ import { CardActionArea } from "@mui/material";
 export default function AgencyCard(props) {
   const router = useRouter();
 
-  const naviateToAgencyPage = () => {
-    router.push(`/agency/${props.id}`);
-  };
+  const goToHeroesPage = () => {
+    router.push(`/heroes/${props.id}`);
+  }
   return (
     <Card sx={{ marginTop: "8px", maxWidth: 345, backgroundColor: "#dcdcdc"}}>
-      <CardActionArea onClick={naviateToAgencyPage}>
+      <CardActionArea onClick={goToHeroesPage}>
         {props.imageUrl && (
           <CardMedia
             component="img"
