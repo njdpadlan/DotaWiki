@@ -24,10 +24,10 @@ export default function Home() {
             About us
           </Typography>
           <Typography variant="h4" style={{ color: "white", marginBottom: "1rem"  }}>
-            Hi! I'm Nicole, a front-end web developer from NAIT.
+            Hi! I am Nicole, a front-end web developer from NAIT.
           </Typography>
           <Typography variant="h4" style={{ color: "white", marginBottom: "1rem"  }}>
-            I'm currently doing this as a personal project of mine since I'm passionate about Dota 2.
+            I am currently doing this as a personal project of mine since I am very passionate about Dota 2 or gaming in general.
           </Typography>
           <Typography variant="h4" style={{ color: "white" }}>
             Huge thanks to OpenDota API (25.0.0) for creating this Dota API Link: https://docs.opendota.com/

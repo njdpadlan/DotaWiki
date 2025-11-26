@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { getHeroById } from "@utils/api/heroes";
 import { getHeroLore } from "@utils/api/heroes";
 import Box from "@mui/material/Box";
+import Image from "next/image";
 
 export default function Heroes() {
   const [heroData, setHeroData] = useState(null); // single hero object
@@ -48,17 +49,19 @@ return (
       
       {/* Hero Header */}
       <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} sm={3}>
-          <img 
-            src={heroImg} 
-            alt={heroData.localized_name} 
-            style={{ width: "220px", marginLeft: "1.5rem", marginTop: "1rem" }} 
-          />
-        </Grid>
         <Grid item xs={12} sm={9}>
-          <Typography variant="h2" gutterBottom style={{ color: "white"}}>
+          <Typography variant="h2" gutterBottom style={{ color: "white", paddingLeft: "1rem"}}>
             {heroData.localized_name}
           </Typography>
+        </Grid>
+        <Grid item xs={12} sm={3}>
+            <Image
+            src={heroImg} 
+            alt={heroData.localized_name}
+            width={250}
+            height={150}
+            style={{ paddingLeft: "2rem", paddingTop: "2rem" }}
+            />
         </Grid>
       </Grid>
 
