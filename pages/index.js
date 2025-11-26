@@ -1,26 +1,39 @@
 import Head from "next/head";
-
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { Grid } from "@mui/material";
 import AgencyCard from "@components/AgencyCard";
 import NavBar from "@components/NavBar";
-
 import { useEffect, useState } from "react";
-
 import { getHeroes } from "@utils/api/heroes";
-
+import TextField from "@mui/material/TextField";
 
 export default function Home() {
   const [heroesData, setHeroesData] = useState([]);
+  const [filteredHeroes, setFilteredHeroes] = useState([]);
+  const [searchHero, setSearchHero] = useState("");
 
   useEffect(() => {
     getHeroes().then((data) => {
       // console.log(data);
       setHeroesData(data);
+      setFilteredHeroes(data);
     });
   }, []);
+
+  const handleSearchHero = (event) => {
+    const value = event.target.value;
+    setSearchHero(value);
+
+    const lowercaseFilter = value.toLowerCase();
+
+    const results = heroesData.filter((hero) =>
+      hero.localized_name.toLowerCase().includes(lowercaseFilter)
+    );
+
+    setFilteredHeroes(results);
+  };
 
   return (
     <div>
@@ -31,31 +44,47 @@ export default function Home() {
       </Head>
 
       <NavBar />
-      <Box sx={{backgroundColor: "#0d1117"}}>
-      <Container sx={{ paddingTop: 2 }} component="main" maxWidth="lg">
-        {/* <Typography variant="h3">Dota Heroes</Typography> */}
 
-        <Grid container spacing={5} justifyContent="center">
-          {heroesData.map((hero) => {
-            // Clean hero name for the image URL
-            const heroName = hero.name.replace("npc_dota_hero_", "");
+      <Box sx={{ backgroundColor: "#0d1117" }}>
 
-            // Dota 2 CDN URL
-            const imgURL = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${heroName}.png`;
+        <Container sx={{ paddingTop: 2 }} component="main" maxWidth="lg">
 
-            return (
-              <Grid item key={hero.id}>
-              <AgencyCard
-                key={hero.id}
-                id={hero.id}
-                localized_name={hero.localized_name}
-                imageUrl={imgURL}
-              />
-              </Grid>
-            );
-          })}
+        <Grid container justifyContent="center">
+        <TextField sx={{ backgroundColor: "white", marginTop: "1rem", marginBottom: "1rem"}}
+          id="filled-basic"
+          label="Search"              
+          value={searchHero}
+          onChange={handleSearchHero} 
+        />
         </Grid>
-      </Container>
+
+          {/* Hero Not Found  */}
+          {filteredHeroes.length === 0 && searchHero !== "" && (
+            <Typography variant="h3" color="white" sx={{ mt: 4, textAlign: "center" }}>
+              Hero not found
+            </Typography>
+          )}
+          <Grid container spacing={5} justifyContent="center">
+            {filteredHeroes.map((hero) => {
+              // Clean hero name for the image URL
+              const heroName = hero.name.replace("npc_dota_hero_", "");
+
+              // Dota 2 CDN URL
+              const imgURL = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${heroName}.png`;
+              
+              return (
+                <Grid item key={hero.id}>
+                  <AgencyCard
+                    key={hero.id}
+                    id={hero.id}
+                    localized_name={hero.localized_name}
+                    imageUrl={imgURL}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Container>
       </Box>
     </div>
   );

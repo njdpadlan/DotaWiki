@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 export default function SimpleDetailsCard(props) {
     return <Card sx={{ minWidth: 275, margin: 2 }}>
     <CardContent>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+      <Typography sx={{ fontSize: 20, fontWeight: "bold" }} color="text.secondary" gutterBottom>
         {props.title}
       </Typography>
       <Typography variant="h5" component="div">

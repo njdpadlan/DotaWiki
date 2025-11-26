@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { getHeroes } from "@utils/api/agencies";
 import { getHeroById } from "@utils/api/heroes";
 import { getHeroLore } from "@utils/api/heroes";
+import Box from "@mui/material/Box";
 
 export default function Heroes() {
   const [heroData, setHeroData] = useState(null); // single hero object
@@ -43,6 +44,7 @@ export default function Heroes() {
 return (
   <>
     <NavBar />
+    <Box sx={{backgroundColor: "#0d1117"}}>
     <Container sx={{ paddingTop: 2 }}>
       
       {/* Hero Header */}
@@ -51,11 +53,11 @@ return (
           <img 
             src={heroImg} 
             alt={heroData.localized_name} 
-            style={{ width: "220px", height: "auto" }} 
+            style={{ width: "220px", marginLeft: "1.5rem", marginTop: "1rem" }} 
           />
         </Grid>
         <Grid item xs={12} sm={9}>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant="h2" gutterBottom style={{ color: "white"}}>
             {heroData.localized_name}
           </Typography>
         </Grid>
@@ -92,11 +94,12 @@ return (
         </Grid>
 
       {/* Lore Full Width */}
-      <Grid item xs={12} sx={{ marginTop: 3 }}>
+      <Grid item xs={12} sx={{ marginTop: 3, paddingBottom: "2rem" }}>
         <SimpleDetailsCard title="Lore" description={heroLore} />
       </Grid>
 
     </Container>
+    </Box>
   </>
 );
 
