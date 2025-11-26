@@ -9,8 +9,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { CardActionArea } from '@mui/material';
 
 export default function AgencyCard(props) {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function AgencyCard(props) {
     router.push(`/agency/${props.id}`);
   }
   return <Card sx={{ marginTop: "8px", maxWidth: 345 }}>
+    <CardActionArea onClick={naviateToAgencyPage}>
     {props.imageUrl && <CardMedia
       component="img"
       height="140"
@@ -26,17 +28,13 @@ export default function AgencyCard(props) {
       alt="green iguana"
     />}
     <CardContent>
+      <Button
+        onClick={naviateToAgencyPage}>
       <Typography variant="h5" component="div">
         {props.localized_name}
       </Typography>
-    </CardContent>
-    <CardActions>
-      <Button
-        size="small"
-        onClick={naviateToAgencyPage}
-      >
-        View Hero Details
       </Button>
-    </CardActions>
+    </CardContent>
+    </CardActionArea>
   </Card>
 }
