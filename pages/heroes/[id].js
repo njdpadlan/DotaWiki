@@ -6,7 +6,6 @@ import SimpleDetailsCard from "@components/SimpleDetailsCard";
 import LoadingCircle from "@components/LoadingCircle";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getHeroes } from "@utils/api/agencies";
 import { getHeroById } from "@utils/api/heroes";
 import { getHeroLore } from "@utils/api/heroes";
 import Box from "@mui/material/Box";

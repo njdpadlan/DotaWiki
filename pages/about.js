@@ -18,13 +18,19 @@ export default function Home() {
 
         <NavBar />
 
-        <Container sx={{paddingTop:2}} component="main" maxWidth="xs">
+        <Container sx={{paddingTop:2}} component="main" maxWidth="lg">
 
-          <Typography variant="h3">
+          <Typography variant="h3" style={{ color: "white", marginBottom: "1rem" }}>
             About us
           </Typography>
-          <Typography variant="p">
-            I LOVE DOTAAAAA!
+          <Typography variant="h4" style={{ color: "white", marginBottom: "1rem"  }}>
+            Hi! I'm Nicole, a front-end web developer from NAIT.
+          </Typography>
+          <Typography variant="h4" style={{ color: "white", marginBottom: "1rem"  }}>
+            I'm currently doing this as a personal project of mine since I'm passionate about Dota 2.
+          </Typography>
+          <Typography variant="h4" style={{ color: "white" }}>
+            Huge thanks to OpenDota API (25.0.0) for creating this Dota API Link: https://docs.opendota.com/
           </Typography>
         </Container>
 

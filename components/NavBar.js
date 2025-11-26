@@ -12,7 +12,7 @@ export default function NavBar(props) {
         </Typography>
       </Link>
       <Link href="/about/">
-        <Typography variant="h6" component="div" >
+        <Typography variant="h6" component="div" style={{ cursor: "pointer" }}>
           About
         </Typography>
       </Link>
