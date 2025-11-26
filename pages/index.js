@@ -33,7 +33,7 @@ export default function Home() {
       <NavBar />
 
       <Container sx={{ paddingTop: 2 }} component="main" maxWidth="xs">
-        <Typography variant="h3">Dota Heroes</Typography>
+        {/* <Typography variant="h3">Dota Heroes</Typography> */}
 
         <Box
           sx={{

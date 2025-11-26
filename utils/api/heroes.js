@@ -10,7 +10,19 @@ export const getHeroes = () => {
 }
 
 export const getHeroById = async (id) => {
-  const res = await fetch("https://api.opendota.com/api/heroStats");
-  const heroes = await res.json();
-  return heroes.find(hero => hero.id === Number(id));
+  return await fetch("https://api.opendota.com/api/heroStats")
+    .then(response => {
+        return response.json();
+    }).then(data => {
+        return data.find(hero => hero.id === Number(id));
+    })
+};
+
+export const getHeroLore = async (heroName) => {
+    return fetch("https://raw.githubusercontent.com/odota/dotaconstants/master/build/hero_lore.json")
+        .then(response => {
+            return response.json();
+        }).then(data => {
+            return data[heroName];
+        })
 };
